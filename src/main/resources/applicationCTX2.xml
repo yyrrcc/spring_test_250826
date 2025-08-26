@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 컨테이너 라고 선언하는 것 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- setter를 이용한 객체 초기화 / StudentDto 클래스로 studentDto 객체 생성 -->
+	<bean id="studentDto3" class="com.mycompany.test.StudentDto" >
+		<property name="name" value="이혜선"></property>
+		<property name="age" value="17"></property>
+		<property name="gradeNum" value="1"></property>
+		<property name="classNum" value="8"></property>
+	</bean>	
+	
+	
+	<!-- constructor를 이용한 객체 초기화 / StudentDto 클래스로 studentDto 객체 생성 -->
+	<bean id="studentDto4" class="com.mycompany.test.StudentDto" >
+		<constructor-arg>
+			<value>황연우</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>19</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>3</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>2</value>
+		</constructor-arg>						
+	</bean>	
+
+		
+	<!-- setter, constructor -->
+	<bean id="studentInfo3" class="com.mycompany.test.StudentInfo" >
+		<property name="studentDto">
+			<ref bean="studentDto3"/>
+		</property>
+	</bean>
+	<bean id="studentInfo4" class="com.mycompany.test.StudentInfo" >
+		<constructor-arg>
+			<ref bean="studentDto4"/>
+		</constructor-arg>
+	</bean>
+
+
+</beans>
