@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 컨테이너 라고 선언하는 것 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 주로 Main 클래스에서 객체 생성 하는데 이걸 여기서 하는 거임 -->
+	<!-- Calculator 클래스로 calculator 객체 생성 -->
+	<bean id="cal" class="com.mycompany.test.Calculator" ></bean>
+	<!-- MyCalculator 클래스로 myCalculator 객체 생성 -->
+	<bean id="myCal" class="com.mycompany.test.MyCalculator" >
+		<property name="a" value="12"></property>
+		<property name="b" value="8"></property>
+		<property name="calculator">
+			<ref bean="cal"/>
+		</property>
+	</bean>
+
+</beans>
