@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- (A) StudentDto를 '생성자 주입'으로 만든 bean -->
+    <bean id="studentA" class="com.mycompany.studentself.StudentDto">
+        <constructor-arg value="Minji"/>
+        <constructor-arg value="27"/>
+        <constructor-arg value="Computer Science"/>
+    </bean>
+
+    <!-- (B) StudentDto를 'setter 주입'으로 만든 bean -->
+    <bean id="studentB" class="com.mycompany.studentself.StudentDto">
+        <property name="name" value="Jisoo"/>
+        <property name="age" value="23"/>
+        <property name="major" value="Mathematics"/>
+    </bean>
+
+    <!-- (C) StudentInfo - 생성자 주입: StudentDto를 ref로 연결 -->
+    <bean id="studentInfoByConstructor" class="com.mycompany.studentself.StudentInfo">
+        <!-- StudentInfo(StudentDto student) 호출 -->
+        <constructor-arg ref="studentA"/>
+    </bean>
+
+    <!-- (D) StudentInfo - setter 주입: setStudent(...) 호출 -->
+    <bean id="studentInfoBySetter" class="com.mycompany.studentself.StudentInfo">
+        <property name="student" ref="studentB"/>
+    </bean>
+
+    <!-- (E) (선택) 인라인 빈으로도 가능: 별도 id 없이 내부에서 바로 정의 -->
+    <bean id="studentInfoInline" class="com.mycompany.studentself.StudentInfo">
+        <property name="student">
+            <bean class="com.mycompany.studentself.StudentDto">
+                <property name="name" value="Minho"/>
+                <property name="age" value="21"/>
+                <property name="major" value="Physics"/>
+            </bean>
+        </property>
+    </bean>
+</beans>
